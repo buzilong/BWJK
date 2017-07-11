@@ -1,4 +1,4 @@
-package com.buzl.springboot;
+package com.bwjk.sso;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

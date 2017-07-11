@@ -1,10 +1,10 @@
-package com.buzl.springboot.db.mapper;
+package com.bwjk.sso.db.mapper;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 
-import com.buzl.springboot.db.model.Demo;
+import com.bwjk.sso.db.model.Demo;
 
 public interface DemoMappper {
 	
