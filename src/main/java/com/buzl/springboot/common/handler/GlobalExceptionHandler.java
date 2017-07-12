@@ -1,4 +1,4 @@
-package com.buzl.springboot.common.ExceptionHandler;
+package com.buzl.springboot.common.handler;
 
 import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.ControllerAdvice;
