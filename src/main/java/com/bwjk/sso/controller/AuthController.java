@@ -10,7 +10,7 @@ import com.bwjk.sso.model.request.LoginRequestDTO;
 
 @RestController()
 @RequestMapping(path = "/auth")
-public class AuthenticationController {
+public class AuthController {
 
 	@PostMapping(path="/login")
 	public void login(@Validated @RequestBody LoginRequestDTO request){
