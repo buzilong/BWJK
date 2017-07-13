@@ -2,13 +2,16 @@ package util;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bwjk.sso.common.config.Constant;
+import com.bwjk.sso.common.util.DataTypeConverter;
 import com.bwjk.sso.common.util.JwtUtil;
 import com.bwjk.sso.model.request.LoginRequestDTO;
 import io.jsonwebtoken.Claims;
 import org.testng.annotations.Test;
 
+import javax.xml.bind.DatatypeConverter;
+
 /**
- * Created by DIY on 2017/7/13.
+ * Created by zxl on 2017/7/13.
  */
 public class JwtTest {
 
@@ -53,4 +56,33 @@ public class JwtTest {
             System.out.println("失败");
         }
     }
+
+    @Test
+    public void testConv() {
+        String in = "Testing";
+        LoginRequestDTO loginRequest = new LoginRequestDTO();
+        loginRequest.setUserName("Zhangxl");
+        String subject = JwtUtil.generalSubject(loginRequest);
+        String encode1 = DatatypeConverter.printBase64Binary(subject.getBytes());
+        System.out.println(encode1);
+
+        byte[] decode1 = DatatypeConverter.parseBase64Binary(encode1);
+        LoginRequestDTO loginResponse = JSONObject.parseObject(new String(decode1), LoginRequestDTO.class);
+        System.out.println(loginResponse.getUserName());
+
+    }
+
+    @Test
+    public void testEncode() {
+        LoginRequestDTO loginRequest = new LoginRequestDTO();
+        loginRequest.setUserName("Zhangxl");
+        System.out.println(DataTypeConverter.encodeInfo(loginRequest));
+    }
+
+    @Test
+    public void testDecode() {
+        String in = "==QfiwGen5WYoplI6ISZtFmTyV2c1Jye";
+        System.out.println(DataTypeConverter.decodeInfo(in).getUserName());
+    }
+
 }
