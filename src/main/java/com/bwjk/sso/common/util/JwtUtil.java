@@ -19,13 +19,13 @@ import java.util.Date;
 public class JwtUtil {
 	
 	@Value("${spring.profiles.active}")
-    private String profiles;
+    private static String profiles;
 	
 	/**
 	 * 由字符串生成加密key
 	 * @return
 	 */
-	public SecretKey generalKey(){
+	private static SecretKey generalKey(){
 		String stringKey = profiles+ Constant.JWT_SECRET;
 		byte[] encodedKey = Base64.decodeBase64(stringKey);
 	    SecretKey key = new SecretKeySpec(encodedKey, 0, encodedKey.length, "AES");
@@ -40,16 +40,22 @@ public class JwtUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public String createJWT(String id, String subject, long ttlMillis) throws Exception {
+	public static String createJWT(String id, String subject, long ttlMillis) throws Exception {
 		SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 		long nowMillis = System.currentTimeMillis();
 		Date now = new Date(nowMillis);
+
+		// 生成签名密钥
 		SecretKey key = generalKey();
+
+		// 添加构成JWT的参数
 		JwtBuilder builder = Jwts.builder()
 			.setId(id)
 			.setIssuedAt(now)
 			.setSubject(subject)
 		    .signWith(signatureAlgorithm, key);
+
+		// 添加Token过期时间
 		if (ttlMillis >= 0) {
 		    long expMillis = nowMillis + ttlMillis;
 		    Date exp = new Date(expMillis);
@@ -64,7 +70,7 @@ public class JwtUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public Claims parseJWT(String jwt) throws Exception{
+	public static Claims parseJWT(String jwt) throws Exception{
 		SecretKey key = generalKey();
 		Claims claims = Jwts.parser()         
 		   .setSigningKey(key)
@@ -81,5 +87,9 @@ public class JwtUtil {
 		JSONObject jo = new JSONObject();
 		jo.put("userName", loginRequest.getUserName());
 		return jo.toJSONString();
+	}
+
+	public static void main(String[] arge) {
+		System.out.println(String.valueOf("1"));
 	}
 }
