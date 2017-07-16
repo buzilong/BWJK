@@ -8,7 +8,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bwjk.sso.db.model.Demo;
+import com.bwjk.sso.db.entity.Demo;
 import com.bwjk.sso.model.request.DemoReqDTO;
 import com.bwjk.sso.service.DemoService;
 

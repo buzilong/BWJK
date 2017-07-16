@@ -1,7 +1,8 @@
 package com.bwjk.sso.db.mapper;
 
-import com.bwjk.sso.db.model.Demo;
 import org.apache.ibatis.annotations.Select;
+
+import com.bwjk.sso.db.entity.Demo;
 
 import java.util.List;
 

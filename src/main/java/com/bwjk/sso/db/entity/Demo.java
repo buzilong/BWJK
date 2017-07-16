@@ -1,4 +1,4 @@
-package com.bwjk.sso.db.model;
+package com.bwjk.sso.db.entity;
 
 public class Demo {
 	

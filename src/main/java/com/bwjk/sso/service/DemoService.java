@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bwjk.sso.db.entity.Demo;
 import com.bwjk.sso.db.mapper.DemoMappper;
-import com.bwjk.sso.db.model.Demo;
 
 @Service
 public class DemoService {
