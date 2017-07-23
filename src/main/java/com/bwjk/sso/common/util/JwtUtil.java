@@ -1,8 +1,11 @@
 package com.bwjk.sso.common.util;
 
 import com.alibaba.fastjson.JSONObject;
+import com.bwjk.common.basedto.AuthInfo;
 import com.bwjk.sso.common.config.Constant;
 import com.bwjk.sso.model.request.LoginRequestDTO;
+import com.google.gson.Gson;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -17,6 +20,8 @@ import java.util.Date;
 
 @Component
 public class JwtUtil {
+	
+	private static Gson GSON = new Gson();
 	
 	@Value("${spring.profiles.active}")
     private static String profiles;
@@ -40,14 +45,11 @@ public class JwtUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static String createJWT(String id, String subject, long ttlMillis) throws Exception {
+	public static String createJWT(String id, String subject, long ttlMillis) {
 		SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
-		long nowMillis = System.currentTimeMillis();
-		Date now = new Date(nowMillis);
-
+		Date now = new Date();
 		// 生成签名密钥
 		SecretKey key = generalKey();
-
 		// 添加构成JWT的参数
 		JwtBuilder builder = Jwts.builder()
 			.setId(id)
@@ -57,13 +59,41 @@ public class JwtUtil {
 
 		// 添加Token过期时间
 		if (ttlMillis >= 0) {
-		    long expMillis = nowMillis + ttlMillis;
+		    long expMillis = now.getTime() + ttlMillis;
 		    Date exp = new Date(expMillis);
 		    builder.setExpiration(exp);
 		}
 		return builder.compact();
 	}
-	
+
+	/**
+	 * 创建jwt
+	 * @param id
+	 * @param subject
+	 * @param ttlMillis
+	 * @return
+	 * @throws Exception
+	 */
+	public static String createJWT(String id, AuthInfo authInfo, long ttlMillis) throws Exception {
+		SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+		Date now = new Date();
+		// 生成签名密钥
+		SecretKey key = generalKey();
+		// 添加构成JWT的参数
+		JwtBuilder builder = Jwts.builder()
+			.setId(id)
+			.setIssuedAt(now)
+			.setSubject(GSON.toJson(authInfo))
+		    .signWith(signatureAlgorithm, key);
+
+		// 添加Token过期时间
+		if (ttlMillis >= 0) {
+		    long expMillis = now.getTime() + ttlMillis;
+		    Date exp = new Date(expMillis);
+		    builder.setExpiration(exp);
+		}
+		return builder.compact();
+	}
 	/**
 	 * 解密jwt
 	 * @param jwt

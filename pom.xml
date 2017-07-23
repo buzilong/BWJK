@@ -58,18 +58,22 @@
 			<version>6.1.1</version>
 			<scope>test</scope>
 		</dependency>
-   <!-- testing start -->
-      <dependency>
-         <groupId>org.springframework.boot</groupId>
-         <artifactId>spring-boot-starter-test</artifactId>
-         <scope>test</scope>
-      </dependency>
-      <dependency>
-         <groupId>junit</groupId>
-         <artifactId>junit</artifactId>
-         <scope>test</scope>
-      </dependency>
-      <!-- testing end -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+		</dependency>
+		<!-- testing start -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- testing end -->
 		<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
 		<dependency>
 			<groupId>commons-codec</groupId>
