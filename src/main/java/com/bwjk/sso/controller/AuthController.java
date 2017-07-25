@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bwjk.common.exception.BusinessException;
 import com.bwjk.sso.business.AuthBusiness;
 import com.bwjk.sso.model.request.LoginRequestDTO;
 import com.bwjk.sso.model.response.LoginResponseDTO;
@@ -22,7 +23,7 @@ public class AuthController {
 	private AuthBusiness authBusiness;
 
 	@PostMapping(path = "/login")
-	public LoginResponseDTO login(@Validated @RequestBody LoginRequestDTO loginRequestDTO) {
+	public LoginResponseDTO login(@Validated @RequestBody LoginRequestDTO loginRequestDTO) throws BusinessException {
 		LOGGER.info("Enter in login controller ");
 		return authBusiness.loginByAccNameAndPassword(loginRequestDTO);
 	}
