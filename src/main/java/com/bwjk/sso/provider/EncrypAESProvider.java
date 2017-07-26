@@ -13,6 +13,12 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
+import org.springframework.util.Base64Utils;
+
+import com.bwjk.common.util.Base64Util;
+
+import io.jsonwebtoken.impl.Base64UrlCodec;
+
 public class EncrypAESProvider {
 	// KeyGenerator 提供对称密钥生成器的功能，支持各种算法
 	private KeyGenerator keygen ;
@@ -61,7 +67,7 @@ public class EncrypAESProvider {
 		byte[] src = str.getBytes("UTF-8");
 		// 加密，结果保存进cipherByte
 		cipherByte = c.doFinal(src);
-		return Base64.getEncoder().encodeToString(cipherByte);
+		return Base64Utils.encodeToUrlSafeString(cipherByte);
 	}
 
 	/**
@@ -76,7 +82,7 @@ public class EncrypAESProvider {
 	 */
 	public String Decryptor(String str)
 			throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException {
-		byte[] decBytes = Base64.getDecoder().decode(str.getBytes());
+		byte[] decBytes = Base64Utils.decodeFromUrlSafeString(str);
 		// 根据密钥，对Cipher对象进行初始化，DECRYPT_MODE表示加密模式
 		c.init(Cipher.DECRYPT_MODE, deskey);
 		cipherByte = c.doFinal(decBytes);
