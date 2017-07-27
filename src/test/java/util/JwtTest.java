@@ -1,18 +1,23 @@
 package util;
 
+import javax.xml.bind.DatatypeConverter;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.runners.MockitoJUnitRunner;
+
 import com.alibaba.fastjson.JSONObject;
 import com.bwjk.sso.common.config.Constant;
 import com.bwjk.sso.common.util.DataTypeConverter;
 import com.bwjk.sso.common.util.JwtUtil;
 import com.bwjk.sso.model.request.LoginRequestDTO;
-import io.jsonwebtoken.Claims;
-import org.testng.annotations.Test;
 
-import javax.xml.bind.DatatypeConverter;
+import io.jsonwebtoken.Claims;
 
 /**
  * Created by zxl on 2017/7/13.
  */
+@RunWith(MockitoJUnitRunner.class)
 public class JwtTest {
 
     @Test
