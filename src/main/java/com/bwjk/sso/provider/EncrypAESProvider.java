@@ -4,7 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.Base64;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -14,10 +13,6 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
 import org.springframework.util.Base64Utils;
-
-import com.bwjk.common.util.Base64Util;
-
-import io.jsonwebtoken.impl.Base64UrlCodec;
 
 public class EncrypAESProvider {
 	// KeyGenerator 提供对称密钥生成器的功能，支持各种算法
