@@ -29,6 +29,7 @@ public class GlobalExceptionHandler {
         errorInfo.setCode("");
         errorInfo.setType("");
         errorInfo.setMessage("");
+
         return errorInfo;
     }
     
