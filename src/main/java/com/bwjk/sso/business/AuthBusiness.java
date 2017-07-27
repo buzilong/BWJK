@@ -41,7 +41,7 @@ public class AuthBusiness {
 			responseDTO.setToken(token);
 			responseDTO.setUserId(userAuth.getUserId());
 		}else{
-			throw new BusinessException("用户名或密码错误", ErrorCodeEnum.ERR_USERNAME_PWD_ERROR.getCode());
+			throw new BusinessException("用户名或密码错误", ErrorCodeEnum.ERR_USERNAME_PWD_ERROR.getCode(),ErrorCodeEnum.ERR_USERNAME_PWD_ERROR.getActionType());
 		}
 		return responseDTO;
 	}
@@ -59,7 +59,7 @@ public class AuthBusiness {
 			responseDTO.setUserId(authInfo.getUserId());
 			responseDTO.setValid(true);
 		}else{
-			throw new BusinessException("无效的token", ErrorCodeEnum.ERR_INVAILD_TOKEN.getCode());
+			throw new BusinessException("无效的token", ErrorCodeEnum.ERR_INVAILD_TOKEN.getCode(),ErrorCodeEnum.ERR_INVAILD_TOKEN.getActionType());
 		}
 		return responseDTO;
 

@@ -1,12 +1,15 @@
 package com.bwjk.sso.common.filter;
 
-import com.bwjk.sso.common.util.JwtUtil;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
-
-import javax.servlet.*;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 /**
  * Created by zxl on 2017/7/14.
@@ -18,7 +21,7 @@ public class HTTPBearerAuthorizeAttribute implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {/*
 
         System.out.println("filter-start");
 
@@ -47,7 +50,7 @@ public class HTTPBearerAuthorizeAttribute implements Filter {
 
         System.out.println("filter-end");
         return;
-    }
+    */}
 
     @Override
     public void destroy() {
