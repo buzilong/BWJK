@@ -1,11 +1,9 @@
 package com.bwjk.sso.common.handler;
 
+import com.bwjk.common.basedto.ErrorInfo;
 import org.apache.log4j.Logger;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,14 +14,22 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    private ErrorInfo errorInfo = new ErrorInfo();
+
     private static final Logger LOGGER = Logger.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(Exception.class)
-    public void testException(HttpServletRequest request, Exception ex) {
+    @ResponseBody
+    public ErrorInfo testException(HttpServletRequest request, Exception ex) {
         System.out.println("--Exception回调开始--");
         LOGGER.info("Exception:" + ex.getMessage());
         System.out.println(ex.getMessage());
         System.out.println("--Exception回调结束--");
+
+        errorInfo.setCode("");
+        errorInfo.setType("");
+        errorInfo.setMessage("");
+        return errorInfo;
     }
     
     @ModelAttribute
