@@ -50,7 +50,7 @@ public class ErrorUtil {
 		errorInfo.setCode(errorCodeEnum.getCode());
 		errorInfo.setMessage(errorCodeEnum.getMessage());
 		errorInfo.setType(errorCodeEnum.getActionType());
-		return null;
+		return errorInfo;
 		
 	}
 }

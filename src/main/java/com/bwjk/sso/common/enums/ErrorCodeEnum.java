@@ -6,6 +6,7 @@ public enum ErrorCodeEnum {
 	ERR_SYSTEM("E10000000","E","未知系统异常。"),
 	ERR_SESSION_TIMEOUT("E10000001","E","会话超时。"),
 	ERR_USERNAME_PWD_ERROR("E10000002","E","用户名密码错误"),
+	ERR_INVAILD_REQUEST_BODY("E10000004","E","无效的请求体."),
 	ERR_INVAILD_TOKEN("E10000003","E","无效的token."),
 	ERR_PARAMETER_VALIDATE_FAILE("E10000005","V","无效的参数。");
 	

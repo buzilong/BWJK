@@ -3,6 +3,7 @@ package com.bwjk.sso.common.handler;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -44,6 +45,8 @@ public class GlobalExceptionHandler {
 			errorInfo.setCode(exception.getCode());
 			errorInfo.setType(exception.getType());
 			responseDTO.addError(errorInfo);
+		}else if(ex instanceof HttpMessageNotReadableException){
+			responseDTO.addError(ErrorUtil.buildError(ErrorCodeEnum.ERR_INVAILD_REQUEST_BODY));
 		}else{
 			LOGGER.error("未知 异常.", ex);
 			responseDTO.addError(ErrorUtil.buildError(ErrorCodeEnum.ERR_SYSTEM));
